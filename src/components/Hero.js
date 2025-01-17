@@ -1,0 +1,41 @@
+import React from "react";
+
+export default function Hero() {
+  return (
+    <>
+      <img
+        className="absolute top-0 right-0 h-full py-14 px-6 opacity-30 max-lg:hidden"
+        src="./Images/API-HomeImg.png"
+        alt=""
+      />
+      <div className="xl:w-[70%]">
+        <div className="flex flex-col sm:px-16 px-8 gap-6 lg:gap-8 justify-center min-h-[100vh] z-10 relative">
+          <div className="w-full flex items-center justify-center mb-4">
+            <img
+              className=" w-[95%] xs:w-[88%]  sm:w-[74%] lg:hidden"
+              src="./Images/API-HomeImg.png"
+              alt="Devicode Logo"
+            />
+          </div>
+          <h1 className="lg:text-5xl text-2xl font-bold text-text-normal leading-[2.3rem] lg:leading-[4rem]">
+            The #1 Site for No Code Backend Solutions,{" "}
+            <p className="inline text-theme-color-primary">Devicode</p>
+          </h1>
+          <p className="lg:text-2xl text-base font-semibold text-text-light">
+            Creating Backend has never been easier. Get started with the{" "}
+            <span className="text-theme-color-primary">Devicode API</span>, Get
+            your API ready just by telling us about your routes and attributes
+          </p>
+          <div className="flex gap-4 flex-col sm:flex-row">
+            <button className="border max-sm:w-full hover:bg-theme-color-primary transition-all  duration-300 ease-in-out border-theme-color-primary text-text-normal py-2 px-6 w-max rounded-md">
+              Get Started
+            </button>
+            <button className="bg-theme-color-secondary max-sm:w-full hover:bg-theme-color-primary transition-all  duration-300 ease-in-out text-text-normal py-2 px-6 w-max rounded-md">
+              Learn More
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
