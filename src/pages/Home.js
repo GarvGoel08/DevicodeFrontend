@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
 import HowItWorks from "../components/HowItWorks";
 import Features from "../components/Features";
+import Footer from "../components/Footer";
 
 export default function Home() {
   const features = [
@@ -73,6 +74,7 @@ export default function Home() {
       </div>
       <HowItWorks steps={steps} />
       <Features features={features} />
+      <Footer/>
     </div>
   );
 }
