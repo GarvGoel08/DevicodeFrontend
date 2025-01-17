@@ -9,9 +9,8 @@ export default function HowItWorks({steps}) {
         </h1>
         <div className="flex flex-col">
           {steps.map((step, index) => (
-            <div className="flex flex-row">
+            <div className="flex flex-row" key={index}>
               <div
-                key={index}
                 className="py-6 px-6 w-[50%] items-center justify-center max-lg:hidden sm:block hidden"
               >
                 <div
