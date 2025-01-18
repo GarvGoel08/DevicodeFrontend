@@ -10,7 +10,7 @@ function RevealFeature({feature}) {
     if(currentView){
       animatePart.start("visible")
     }
-  },[currentView])
+  },[currentView, animatePart])
 
   return (
         <motion.div ref={ref}
@@ -26,7 +26,7 @@ function RevealFeature({feature}) {
  shadow-card-shadow backdrop-blur-lg border border-text-light rounded-lg duration-150 bg-black bg-opacity-[0.15] cursor-default hover:border-theme-color-secondary p-6 py-8 flex-col`}
         >
         <div className="text-icon ">
-          <img src={feature.icon}/>
+          <img src={feature.icon} alt='Icon'/>
         </div>
         <div className="flex flex-col gap-2">
             <h2 className="text-primary text-xl font-semibold leading-snug">

@@ -12,7 +12,7 @@ function RevealSteps({step,index}) {
       animatePart.start("visible")
       slidePart.start("visible")
     }
-  },[currentView])
+  },[currentView, animatePart, slidePart])
 
   return (
     <div ref={ref} style={{position: "relative",overflow: "hidden"}}>
