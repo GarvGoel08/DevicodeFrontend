@@ -67,7 +67,7 @@ export default function CreateAPI() {
                 {schema.schema_name}
               </h2>
               <p className="text-lg mb-2">
-                <strong>Base Route:</strong> <code>/dynamic/{schema._id}</code>
+                <strong>Base Route:</strong> <code>https://apidevicode.vercel.app/dynamic/{schema._id}</code>
               </p>
 
               {/* API Endpoints */}
