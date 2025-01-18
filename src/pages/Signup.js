@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SignupViewer from "../components/SignupViewer";
 import SignUpForm from "../components/SignUpForm";
+import { useSelector, useDispatch } from 'react-redux';
+import { login } from '../redux/userSlice';
 
 export default function Signup() {
+  const { isLoggedIn } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user_name, setUserName] = useState("");
   const [company_name, setCompanyName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      window.location.href = "/Dashboard";
+    }
+  }, [isLoggedIn]);
 
   const passMask = "Secret, Look Away, You should be ashamed.";
 
@@ -28,6 +38,7 @@ export default function Signup() {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
+          dispatch(login({ userInfo: data.data }));
           window.location.href = "/Login";
         } else {
           alert(data.message);
