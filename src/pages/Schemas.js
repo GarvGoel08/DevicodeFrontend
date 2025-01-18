@@ -35,6 +35,12 @@ export default function Schemas() {
           >
             Create a new Schema
           </button>
+          <button
+            onClick={() => router(`/dashboard/APIDocs/${project_id}`)}
+            className="bg-theme-color-secondary ml-3 hover:bg-theme-color-primary transition-all duration-300 ease-in-out text-text-normal py-1 px-4 rounded-md"
+          >
+            Get API Documentation
+          </button>
         </div>
         <SchemaList projects={schemas} />
       </div>
