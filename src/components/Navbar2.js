@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../redux/userSlice";
+import DevicodeLogo from "../pages/Images/Devicode-Logo.png";
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -35,7 +36,7 @@ const Navbar = () => {
       <div className="w-full mx-auto px-4 py-2 flex items-center justify-between">
         <div className="text-white text-xl font-bold">
           <img
-            src="./Images/Devicode-Logo.png"
+            src={DevicodeLogo}
             className="h-[40px] "
             alt="Devicode Logo"
           />
