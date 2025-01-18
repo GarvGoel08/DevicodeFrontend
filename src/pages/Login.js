@@ -1,11 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LoginViewer from "../components/LoginViewer";
 import LoginForm from "../components/LoginForm";
+import { useSelector, useDispatch } from 'react-redux';
+import { login } from '../redux/userSlice';
 
 export default function Login() {
+  const { isLoggedIn } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const passMask = "Secret, Look Away, You should be ashamed.";
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      window.location.href = "/Dashboard";
+    }
+  }, [isLoggedIn]);
+
   const handleLogin = (e) => {
     e.preventDefault();
     const backendURL = process.env.REACT_APP_BACKEND_URL;
@@ -30,6 +41,9 @@ export default function Login() {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
+          delete data.user.password;
+          delete data.user._id;
+          dispatch(login({ userInfo: data.user }));
           window.location.href = "/Dashboard";
         } else {
           alert(data.message);
