@@ -3,7 +3,7 @@ import RevealSteps from "./RevealSteps";
 
 export default function HowItWorks({steps}) {
   return (
-    <div>
+    <div id="learn-more">
       <div className="flex flex-col py-12">
         <h1 className="text-4xl mb-8 font-bold text-text-normal text-center">
           How it works

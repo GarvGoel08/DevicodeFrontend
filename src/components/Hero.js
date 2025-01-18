@@ -21,7 +21,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <>
+    <div id="home">
       <img
         className="absolute top-0 right-0 h-full py-14 px-6 opacity-30 max-lg:hidden"
         src="./Images/API-HomeImg.png"
@@ -70,6 +70,6 @@ export default function Hero() {
           </div>
         </div>
       </motion.div>
-    </>
+    </div>
   );
 }

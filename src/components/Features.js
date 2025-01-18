@@ -6,7 +6,7 @@ export default function Features({features}) {
   
 
   return (
-    <div  className="flex bg-secondary-bg flex-col text-text-normal gap-10 px-8 py-16">
+    <div id="features" className="flex bg-secondary-bg flex-col text-text-normal gap-10 px-8 py-16">
       <div className="flex flex-col items-center gap-2">
         <h1 className="text-primary tracking-tight text-4xl font-bold text-center max-w-[720px]">
           Features

@@ -63,7 +63,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="text-center text-sm text-gray-500 mt-8">
+        <div className="text-center sm:text-start text-sm text-gray-500 mt-8">
           © 2025 Devicode. All Rights Reserved.
         </div>
       </div>

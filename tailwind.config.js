@@ -14,7 +14,7 @@ module.exports = {
         'text-light': 'rgb(156 163 175 / var(--tw-text-opacity, 1))',
       },
       backgroundImage: {
-        'blue-grad': 'linear-gradient(to right, #141a2c, #020715)'
+        'blue-grad': 'linear-gradient(to right, #141a2c, #020715)',
       },
     },
   },
