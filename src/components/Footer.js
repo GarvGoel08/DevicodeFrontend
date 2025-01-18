@@ -17,10 +17,10 @@ const Footer = () => {
           <div className="w-full sm:w-1/4 mb-6 sm:mb-0">
             <h3 className="text-lg font-bold text-white mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="hover:text-light-blue">Home</a></li>
-              <li><a href="#" className="hover:text-light-blue">API</a></li>
-              <li><a href="#" className="hover:text-light-blue">Pricing</a></li>
-              <li><a href="#" className="hover:text-light-blue">Contact</a></li>
+              <li><a href="#Home" className="hover:text-light-blue">Home</a></li>
+              <li><a href="#Home" className="hover:text-light-blue">API</a></li>
+              <li><a href="#Home" className="hover:text-light-blue">Pricing</a></li>
+              <li><a href="#Home" className="hover:text-light-blue">Contact</a></li>
             </ul>
           </div>
 
@@ -45,7 +45,7 @@ const Footer = () => {
                 <i className="fab fa-twitter text-xl"></i>
               </a>
               <a
-                href="https://github.com/farhan0304"
+                href="https://github.com/GarvGoel08"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-light-blue transition duration-300"

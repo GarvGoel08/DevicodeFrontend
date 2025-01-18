@@ -10,8 +10,11 @@ module.exports = {
         'secondary-bg': '#050820',
         'theme-color-primary': '#2196F3',
         'theme-color-secondary': '#1565C0', 
+        'theme-color-tertiary': '#0b7ad2', 
         'text-normal': '#ffffff',
         'text-light': 'rgb(156 163 175 / var(--tw-text-opacity, 1))',
+        'auth-bg': 'rgb(29 38 64)',
+        'auth-secondary': '#020715'
       },
       backgroundImage: {
         'blue-grad': 'linear-gradient(to right, #141a2c, #020715)',

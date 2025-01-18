@@ -1,6 +1,7 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 const Navbar = () => { 
+  const router = useNavigate();
   const scrollToSection = (id) => {
     document.getElementById(id).scrollIntoView({
       behavior: "smooth",
@@ -28,6 +29,12 @@ const Navbar = () => {
           >
               Home
           </button>
+          <button
+            className="text-text-light hover:text-gray-300"
+            onClick={() => scrollToSection("learn-more")}
+          >
+            How It Works
+          </button>
         
           <button
             className="text-text-light hover:text-gray-300"
@@ -35,18 +42,12 @@ const Navbar = () => {
           >
             Features
           </button>
-          <button
-            className="text-text-light hover:text-gray-300"
-            onClick={() => scrollToSection("learn-more")}
-          >
-            Learn More
-          </button>
         </div>
         <div className="hidden md:flex space-x-6 items-center"> 
-          <button className="border lg:text-base text-sm hover:bg-theme-color-primary transition-all duration-300 ease-in-out border-theme-color-primary text-text-normal py-2 px-4 w-max rounded-md">
+          <button onClick={() => router("/signup")} className="border lg:text-base text-sm hover:bg-theme-color-primary transition-all duration-300 ease-in-out border-theme-color-primary text-text-normal py-2 px-4 w-max rounded-md">
             Sign Up
           </button>
-          <button className="hover:bg-theme-color-primary lg:text-base text-sm transition-all duration-300 ease-in-out bg-theme-color-secondary text-text-normal py-[8px] px-6 w-max rounded-md"
+          <button onClick={() => router("/login")} className="hover:bg-theme-color-primary lg:text-base text-sm transition-all duration-300 ease-in-out bg-theme-color-secondary text-text-normal py-[8px] px-6 w-max rounded-md"
           >
             Login
           </button>
