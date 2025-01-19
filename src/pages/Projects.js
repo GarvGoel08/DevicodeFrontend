@@ -33,7 +33,16 @@ export default function Projects() {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          setProjects([...projects, data.project]);
+          fetch(`${process.env.REACT_APP_BACKEND_URL}api/v1/getUserProducts`, {
+            method: "GET",
+            credentials: "include",
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              setProjects(data.projects);
+            });
+          // console.log(data)
+          // setProjects((prevProjects) => [...prevProjects, data.project]);
           setShowModal(false);
         } else {
           alert(data.message);
