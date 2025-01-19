@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../redux/userSlice";
@@ -6,6 +6,7 @@ import DevicodeLogo from "../pages/Images/Devicode-Logo.png";
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const [showNavbar, setShowNavbar] = useState(false);
   const router = useNavigate();
   const isHome = window.location.pathname === "/";
   const scrollToSection = (id) => {
@@ -31,9 +32,14 @@ const Navbar = () => {
     router("/");
   };
 
+  const handleNavClick = () => {
+    setShowNavbar(prev => !prev);
+    
+  }
+
   return (
     <nav className="flex relative z-10 w-full py-2 px-6 bg-gradient-to-r from-blue-950 to-gray-950 shadow-md">
-      <div className="w-full mx-auto px-4 py-2 flex items-center justify-between">
+      <div className="w-full mx-auto px-4 py-2 flex flex-wrap items-center justify-between">
         <div className="text-white text-xl font-bold">
           <img
             src={DevicodeLogo}
@@ -42,8 +48,20 @@ const Navbar = () => {
           />
         </div>
 
+        {/* Hamburger Menu for Mobile */}
+        <div className="md:hidden ">
+          <button className="text-white hover:text-text-normal"
+          onClick={handleNavClick}
+          >
+            {/* Hamburger Icon */}
+            
+            {showNavbar?`\u2716`:`\u2630`}
+          </button>
+          
+        </div>
+
         {isHome && (
-          <div className="hidden md:flex space-x-6 items-center">
+          <div className={`flex md:space-x-6 max-md:gap-4 max-md:flex-col max-md:w-full items-center ${showNavbar?``:`max-md:hidden`}`}>
             <button
               className="text-text-normal"
               onClick={() => scrollToSection("home")}
@@ -65,7 +83,7 @@ const Navbar = () => {
             </button>
           </div>
         )}
-        <div className="hidden md:flex space-x-6 items-center">
+        <div className={`flex max-md:mt-4 md:space-x-6 max-md:flex-col max-md:gap-4 max-md:w-full items-center ${showNavbar?``:`max-md:hidden`}`}>
           {!isLoggedIn ? (
             <>
               <button
@@ -102,13 +120,7 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Hamburger Menu for Mobile */}
-        <div className="md:hidden">
-          <button className="text-white hover:text-text-normal">
-            {/* Hamburger Icon */}
-            &#9776;
-          </button>
-        </div>
+        
       </div>
     </nav>
   );
