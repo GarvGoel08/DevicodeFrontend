@@ -15,7 +15,8 @@ module.exports = {
         'text-light': 'rgb(156 163 175 / var(--tw-text-opacity, 1))',
         'border-light': '#4b515d',
         'auth-bg': 'rgb(29 38 64)',
-        'auth-secondary': '#020715'
+        'auth-secondary': '#020715',
+        'delete-color': '#FF4C4C'
       },
       backgroundImage: {
         'blue-grad': 'linear-gradient(to right, #141a2c, #020715)',
