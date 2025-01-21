@@ -28,7 +28,7 @@ export default function Schemas() {
     <div className="h-screen bg-auth-bg flex flex-col">
       <Navbar />
       <div className="bg-auth-bg flex-grow relative">
-        <div className="flex flex-row justify-end items-center p-8 px-12">
+        <div className="flex flex-row flex-wrap gap-3 justify-end items-center p-8 px-12">
           <button
             onClick={() => router(`/dashboard/createSchema/${project_id}`)}
             className="bg-theme-color-secondary hover:bg-theme-color-primary transition-all duration-300 ease-in-out text-text-normal py-1 px-4 rounded-md"
@@ -37,7 +37,7 @@ export default function Schemas() {
           </button>
           <button
             onClick={() => router(`/dashboard/APIDocs/${project_id}`)}
-            className="bg-theme-color-secondary ml-3 hover:bg-theme-color-primary transition-all duration-300 ease-in-out text-text-normal py-1 px-4 rounded-md"
+            className="bg-theme-color-secondary hover:bg-theme-color-primary transition-all duration-300 ease-in-out text-text-normal py-1 px-4 rounded-md"
           >
             Get API Documentation
           </button>

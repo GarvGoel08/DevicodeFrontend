@@ -42,10 +42,10 @@ export default function ProjectsList({projects}) {
           <div
             key={index}
             onClick={() => router(`/dashboard/schema/${project._id}`)}
-            className="bg-black bg-opacity-10 flex-wrap text-text-normal flex flex-row justify-between items-center p-8 py-4 border border-border-light rounded-lg transition-all duration-300 ease-in-out hover:border-theme-color-primary cursor-pointer"
+            className="bg-black bg-opacity-10 flex-wrap text-text-normal flex sm:gap-0 gap-2 flex-col sm:flex-row justify-between sm:items-center p-8 py-4 border border-border-light rounded-lg transition-all duration-300 ease-in-out hover:border-theme-color-primary cursor-pointer"
           >
             <h1 className="text-xl font-bold">{project.project_name}</h1>
-            <div className='flex flex-row gap-4'> 
+            <div className='flex flex-col sm:flex-row sm:gap-4 gap-2'> 
               <button className="bg-delete-color text-text-normal text-sm px-2 py-1 rounded-md"
               onClick={(e)=>{
                   e.stopPropagation();

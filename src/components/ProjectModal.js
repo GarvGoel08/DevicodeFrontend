@@ -5,7 +5,7 @@ export default function ProjectModal({ showModal, setShowModal, handleCreateProj
     <div
       className={`absolute ${
         showModal ? "flex" : "hidden"
-      } flex-col gap-2 top-1/2 left-1/2 -translate-x-1/2 p-8 bg-main-bg text-text-normal -translate-y-1/2 rounded-lg`}
+      } flex-col gap-2 top-1/2 sm:left-1/2 sm:w-auto w-[90%] sm:mx-0 mx-[5%] sm:-translate-x-1/2 p-8 bg-main-bg text-text-normal -translate-y-1/2 rounded-lg`}
     >
       <h1 className="text-3xl px-6 font-bold text-center mb-4">
         Create a new project

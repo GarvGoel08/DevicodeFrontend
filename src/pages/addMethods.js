@@ -145,7 +145,7 @@ export default function AddMethods() {
         type: "RELEVANT_SCHEMA",
       });
     }
-  }, [methodInput.method]);
+  }, [methodInput.method, restrictionInput]);
 
   return (
     <div className="h-screen bg-auth-bg flex flex-col">
@@ -272,7 +272,7 @@ export default function AddMethods() {
                     })
                   }
                 >
-                  {methodInput.method != "CREATE" && (
+                  {methodInput.method !== "CREATE" && (
                     <option value="SAME_SCHEMA">Same Schema</option>
                   )}
                   <option value="RELEVANT_SCHEMA">Relevant Schema</option>

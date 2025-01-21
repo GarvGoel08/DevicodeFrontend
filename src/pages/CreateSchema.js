@@ -76,7 +76,7 @@ export default function CreateSchema() {
   return (
     <div className="h-screen bg-auth-bg flex flex-col">
       <Navbar />
-      <div className="flex-grow p-8 bg-auth-bg">
+      <div className="flex-grow p-8 px-2 sm:px-8 bg-auth-bg">
         <div className="bg-main-bg rounded-lg p-8 text-text-light shadow-lg max-w-4xl mx-auto">
           <h1 className="text-3xl font-bold mb-6">Create New Schema</h1>
           {/* Schema Name Input */}
