@@ -42,7 +42,7 @@ export default function Schemas() {
             Get API Documentation
           </button>
         </div>
-        <SchemaList projects={schemas} />
+        <SchemaList projects={schemas} projectId={project_id} />
       </div>
       <Footer />
     </div>

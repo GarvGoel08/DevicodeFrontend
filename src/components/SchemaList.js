@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 
-export default function SchemaList({projects}) {
+export default function SchemaList({projects,projectId}) {
   const [projectList,setProjectList] = useState([]);
   const router = useNavigate();
   const handleDeleteSchema = (schemaId)=>{
@@ -44,6 +44,15 @@ export default function SchemaList({projects}) {
           >
             <h1 className="text-xl font-bold">{project.schema_name}</h1>
             <div className='flex flex-col sm:gap-2 sm:flex-row gap-4'>
+            <button className="bg-green-800 text-text-normal text-sm px-2 py-1 rounded-md"
+                onClick={(e)=>{
+                    e.stopPropagation();
+                    router(`/dashboard/updateMethods/${projectId}/${project._id}`)
+                  }
+                }
+                >
+                  Edit Methods
+              </button> 
               <button className="bg-delete-color text-text-normal text-sm px-2 py-1 rounded-md"
                 onClick={(e)=>{
                     e.stopPropagation();
