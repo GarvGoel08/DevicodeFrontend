@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar2";
 import Footer from "../components/Footer";
 import { useParams } from "react-router-dom";
 
-export default function AddMethods() {
+export default function UpdateMethods() {
   const { schema_id, project_id } = useParams(); // Get schema and project IDs from URL
   const [methodsList, setMethodsList] = useState([]);
   const [methodInput, setMethodInput] = useState({
@@ -39,7 +39,11 @@ export default function AddMethods() {
       credentials: "include",
     })
       .then((res) => res.json())
-      .then((data) => setCurrentSchemaFields(data.schema.fields || []));
+      .then((data) =>{
+        setMethodsList(data.schema.methodsList)
+        setCurrentSchemaFields(data.schema.fields || [])
+      }
+    );
 
     // Fetch all schemas in the project
     fetch(
@@ -138,6 +142,12 @@ export default function AddMethods() {
       .catch((err) => console.error(err));
   };
 
+  const handleDeleteMethod = (index)=>{
+
+    setMethodsList(prev=>prev.filter((item,ind)=>ind  !== index))
+
+  }
+
   useEffect(() => {
     if (methodInput.method === "CREATE") {
         setRestrictionInput((prev) => ({
@@ -146,12 +156,6 @@ export default function AddMethods() {
         }));
     }
   }, [methodInput.method]);
-
-  const handleDeleteMethod = (index)=>{
-
-    setMethodsList(prev=>prev.filter((item,ind)=>ind  !== index))
-
-  }
 
   return (
     <div className="h-screen bg-auth-bg flex flex-col">
@@ -474,28 +478,28 @@ export default function AddMethods() {
               <ul className="list-disc ml-8">
                 {methodsList.map((method, idx) => (
                   <li key={idx} className="mb-2">
-                  <div className="flex flex-col sm:flex-row justify-between">
-                  <div>
-                  <strong>{method.method}</strong>: {method.route_name}{" "}
-                  {method.sendToken &&
-                    `(Token: ${method.tokenName}, Expires: ${method.expireInDays} days)`}
-                  <ul className="ml-6">
-                    {method.restrictions.map((res, resIdx) => (
-                      <li key={resIdx}>
-                        <strong>{res.type}</strong>:{" "}
-                        {res.field_name || res.related_schema_name} at{" "}
-                        {res.location} (Attribute: {res.attribute_name})
-                      </li>
-                    ))}
-                  </ul>
-                  </div>
-                  <button className="text-delete-color max-sm:self-start" 
-                  onClick={()=>handleDeleteMethod(idx)}
-                  >
-                      Delete Method
-                  </button>
-                  </div>
-                </li>
+                    <div className="flex flex-col sm:flex-row justify-between">
+                    <div>
+                    <strong>{method.method}</strong>: {method.route_name}{" "}
+                    {method.sendToken &&
+                      `(Token: ${method.tokenName}, Expires: ${method.expireInDays} days)`}
+                    <ul className="ml-6">
+                      {method.restrictions.map((res, resIdx) => (
+                        <li key={resIdx}>
+                          <strong>{res.type}</strong>:{" "}
+                          {res.field_name || res.related_schema_name} at{" "}
+                          {res.location} (Attribute: {res.attribute_name})
+                        </li>
+                      ))}
+                    </ul>
+                    </div>
+                    <button className="text-delete-color max-sm:self-start" 
+                    onClick={()=>handleDeleteMethod(idx)}
+                    >
+                        Delete Method
+                    </button>
+                    </div>
+                  </li>
                 ))}
               </ul>
             ) : (
