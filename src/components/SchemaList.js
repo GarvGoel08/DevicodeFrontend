@@ -5,7 +5,6 @@ export default function SchemaList({projects}) {
   const [projectList,setProjectList] = useState([]);
   const router = useNavigate();
   const handleDeleteSchema = (schemaId)=>{
-    console.log(schemaId)
     const backendURL = process.env.REACT_APP_BACKEND_URL;
 
     fetch(`${backendURL}api/v1/deleteSchema/${schemaId}`, {
@@ -40,7 +39,7 @@ export default function SchemaList({projects}) {
         projectList?.map((project, index) => (
           <div
             key={index}
-            onClick={() => router(`/dashboard/schema/${project._id}`)}
+            onClick={() => router(`/dashboard/getDocs/${project._id}`)}
             className="bg-black gap-2 flex-col bg-opacity-10 flex-wrap text-text-normal flex sm:flex-row justify-between sm:items-center p-8 py-4 border border-border-light rounded-lg transition-all duration-300 ease-in-out hover:border-theme-color-primary cursor-pointer"
           >
             <h1 className="text-xl font-bold">{project.schema_name}</h1>

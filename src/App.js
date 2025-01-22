@@ -8,6 +8,7 @@ import Schemas from "./pages/Schemas";
 import CreateSchema from "./pages/CreateSchema";
 import AddMethods from "./pages/addMethods";
 import CreateAPI from "./pages/CreateAPI";
+import SchemaDocs from "./pages/SchemaDocs";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/dashboard/createSchema/:project_id" element={<CreateSchema/>}/>
           <Route path="/dashboard/APIDocs/:project_id" element={<CreateAPI/>}/>
           <Route path="/dashboard/addMethods/:project_id/:schema_id" element={<AddMethods/>}/>
+          <Route path="/dashboard/getDocs/:schema_id" element={<SchemaDocs/>}/>
         </Routes>
       </Router>
     </>
