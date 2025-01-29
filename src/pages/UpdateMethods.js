@@ -144,9 +144,18 @@ export default function UpdateMethods() {
 
   const handleDeleteMethod = (index)=>{
 
-    setMethodsList(prev=>prev.filter((item,ind)=>ind  !== index))
+    
 
   }
+
+  const handleEditMethod = (index) => {
+    const CurrMethod = methodsList[index]
+    // console.log(CurrMethod)
+    setMethodInput(CurrMethod);
+    setMethodsList(prev=>prev.filter((item,ind)=>ind  !== index))
+    
+  }
+
 
   useEffect(() => {
     if (methodInput.method === "CREATE") {
@@ -463,9 +472,25 @@ export default function UpdateMethods() {
               <ul className="list-disc ml-8 mt-4">
                 {methodInput.restrictions.map((res, idx) => (
                   <li key={idx}>
-                    <strong>{res.type}</strong>:{" "}
-                    {res.field_name || res.related_schema_name} at{" "}
-                    {res.location} (Attribute: {res.attribute_name})
+                    <div className="flex flex-col sm:flex-row justify-between">
+                      <div>
+                        <strong>{res.type}</strong>:{" "}
+                        {res.field_name || res.related_schema_name} at{" "}
+                        {res.location} (Attribute: {res.attribute_name})
+                      </div>
+                      <div className="flex flex-row gap-4">
+                        <button className="text-green-600 max-sm:self-start" 
+                        onClick={()=>handleEditMethod(idx)}
+                        >
+                            Edit Restriction
+                        </button>
+                        <button className="text-delete-color max-sm:self-start" 
+                        onClick={()=>handleDeleteMethod(idx)}
+                        >
+                            Delete Restriction
+                        </button>
+                      </div>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -493,11 +518,18 @@ export default function UpdateMethods() {
                       ))}
                     </ul>
                     </div>
-                    <button className="text-delete-color max-sm:self-start" 
-                    onClick={()=>handleDeleteMethod(idx)}
-                    >
-                        Delete Method
-                    </button>
+                    <div className="flex flex-row gap-4">
+                      <button className="text-green-600 max-sm:self-start" 
+                      onClick={()=>handleEditMethod(idx)}
+                      >
+                          Edit Method
+                      </button>
+                      <button className="text-delete-color max-sm:self-start" 
+                      onClick={()=>handleDeleteMethod(idx)}
+                      >
+                          Delete Method
+                      </button>
+                    </div>
                     </div>
                   </li>
                 ))}
