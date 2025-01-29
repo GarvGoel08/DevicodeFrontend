@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar2";
 import Footer from "../components/Footer";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 
 export default function AddMethods() {
+  const navigate = useNavigate();
   const { schema_id, project_id } = useParams(); // Get schema and project IDs from URL
   const [methodsList, setMethodsList] = useState([]);
   const [methodInput, setMethodInput] = useState({
@@ -130,7 +131,8 @@ export default function AddMethods() {
       .then((data) => {
         if (data.success) {
           alert("Methods added successfully!");
-          setMethodsList([]);
+          navigate(`/dashboard/schema/${project_id}`)
+          
         } else {
           alert(data.message || "Failed to add methods");
         }
@@ -152,6 +154,37 @@ export default function AddMethods() {
     setMethodsList(prev=>prev.filter((item,ind)=>ind  !== index))
 
   }
+
+  const handleEditMethod = (index) => {
+    const CurrMethod = methodsList[index];
+    setMethodInput(CurrMethod);
+    setMethodsList(prev=>prev.filter((item,ind)=>ind  !== index))
+    
+  }
+
+  const handleEditRestriction = (index) => {
+    const currRest = methodInput.restrictions[index]
+    setRestrictionInput(currRest);
+    setMethodInput(prev=>{
+      return {
+        ...prev,
+        restrictions: prev.restrictions.filter((item,idx)=>idx!==index)
+      }
+    })
+
+  }
+
+  const handleDeleteRestriction = (index) => {
+    
+    setMethodInput(prev=>{
+      return {
+        ...prev,
+        restrictions: prev.restrictions.filter((item,idx)=>idx!==index)
+      }
+    })
+    
+  }
+
 
   return (
     <div className="h-screen bg-auth-bg flex flex-col">
@@ -459,9 +492,25 @@ export default function AddMethods() {
               <ul className="list-disc ml-8 mt-4">
                 {methodInput.restrictions.map((res, idx) => (
                   <li key={idx}>
-                    <strong>{res.type}</strong>:{" "}
-                    {res.field_name || res.related_schema_name} at{" "}
-                    {res.location} (Attribute: {res.attribute_name})
+                    <div className="flex flex-col sm:flex-row justify-between">
+                      <div>
+                        <strong>{res.type}</strong>:{" "}
+                        {res.field_name || res.related_schema_name} at{" "}
+                        {res.location} (Attribute: {res.attribute_name})
+                      </div>
+                      <div className="flex flex-row gap-4">
+                        <button className="text-green-600 max-sm:self-start" 
+                        onClick={()=>handleEditRestriction(idx)}
+                        >
+                            Edit Restriction
+                        </button>
+                        <button className="text-delete-color max-sm:self-start" 
+                        onClick={()=>handleDeleteRestriction(idx)}
+                        >
+                            Delete Restriction
+                        </button>
+                      </div>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -489,11 +538,18 @@ export default function AddMethods() {
                     ))}
                   </ul>
                   </div>
-                  <button className="text-delete-color max-sm:self-start" 
-                  onClick={()=>handleDeleteMethod(idx)}
-                  >
-                      Delete Method
-                  </button>
+                  <div className="flex flex-row gap-4">
+                      <button className="text-green-600 max-sm:self-start" 
+                      onClick={()=>handleEditMethod(idx)}
+                      >
+                          Edit Method
+                      </button>
+                      <button className="text-delete-color max-sm:self-start" 
+                      onClick={()=>handleDeleteMethod(idx)}
+                      >
+                          Delete Method
+                      </button>
+                    </div>
                   </div>
                 </li>
                 ))}

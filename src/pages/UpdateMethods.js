@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar2";
 import Footer from "../components/Footer";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function UpdateMethods() {
+  const navigate = useNavigate();
   const { schema_id, project_id } = useParams(); // Get schema and project IDs from URL
   const [methodsList, setMethodsList] = useState([]);
   const [methodInput, setMethodInput] = useState({
@@ -134,7 +135,8 @@ export default function UpdateMethods() {
       .then((data) => {
         if (data.success) {
           alert("Methods added successfully!");
-          setMethodsList([]);
+          navigate(`/dashboard/schema/${project_id}`);
+
         } else {
           alert(data.message || "Failed to add methods");
         }
@@ -144,15 +146,37 @@ export default function UpdateMethods() {
 
   const handleDeleteMethod = (index)=>{
 
-    
+    setMethodsList(prev=>prev.filter((item,ind)=>ind  !== index))
 
   }
 
   const handleEditMethod = (index) => {
-    const CurrMethod = methodsList[index]
-    // console.log(CurrMethod)
+    const CurrMethod = methodsList[index];
     setMethodInput(CurrMethod);
     setMethodsList(prev=>prev.filter((item,ind)=>ind  !== index))
+    
+  }
+
+  const handleEditRestriction = (index) => {
+    const currRest = methodInput.restrictions[index]
+    setRestrictionInput(currRest);
+    setMethodInput(prev=>{
+      return {
+        ...prev,
+        restrictions: prev.restrictions.filter((item,idx)=>idx!==index)
+      }
+    })
+
+  }
+
+  const handleDeleteRestriction = (index) => {
+    
+    setMethodInput(prev=>{
+      return {
+        ...prev,
+        restrictions: prev.restrictions.filter((item,idx)=>idx!==index)
+      }
+    })
     
   }
 
@@ -480,12 +504,12 @@ export default function UpdateMethods() {
                       </div>
                       <div className="flex flex-row gap-4">
                         <button className="text-green-600 max-sm:self-start" 
-                        onClick={()=>handleEditMethod(idx)}
+                        onClick={()=>handleEditRestriction(idx)}
                         >
                             Edit Restriction
                         </button>
                         <button className="text-delete-color max-sm:self-start" 
-                        onClick={()=>handleDeleteMethod(idx)}
+                        onClick={()=>handleDeleteRestriction(idx)}
                         >
                             Delete Restriction
                         </button>
