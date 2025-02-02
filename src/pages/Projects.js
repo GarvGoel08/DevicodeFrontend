@@ -9,7 +9,28 @@ export default function Projects() {
   const [showModal, setShowModal] = useState(false);
   const [projectName, setProjectName] = useState("");
 
+
   useEffect(() => {
+    const generativeSchemaURL = process.env.REACT_APP_AIGENERATEDSCHEMA_URL;
+    const passwd = process.env.REACT_APP_TOKKEN_SECRET;
+    const apiLogin = {
+      password:passwd
+    };
+
+    fetch(`${generativeSchemaURL}api/v1/user/login`,{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(apiLogin),
+      credentials: "include",
+    }).then(res=>res.json())
+    .then((data)=>{
+      
+    }).catch((error)=>{
+      console.error("Error: ",error)
+    })
+
     fetch(`${process.env.REACT_APP_BACKEND_URL}api/v1/getUserProducts`, {
       method: "GET",
       credentials: "include",

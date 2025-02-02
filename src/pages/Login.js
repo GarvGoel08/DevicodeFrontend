@@ -19,6 +19,7 @@ export default function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
+
     const backendURL = process.env.REACT_APP_BACKEND_URL;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -30,6 +31,7 @@ export default function Login() {
       alert("Password must be at least 8 characters long.");
       return;
     }
+
     fetch(`${backendURL}api/v1/login`, {
       method: "POST",
       headers: {

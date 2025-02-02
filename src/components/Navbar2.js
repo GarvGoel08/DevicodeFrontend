@@ -29,6 +29,10 @@ const Navbar = () => {
       method: "POST",
       credentials: "include",
     });
+    fetch(`${process.env.REACT_APP_AIGENERATEDSCHEMA_URL}api/v1/user/logout`,{
+      method: "GET",
+      credentials: "include",
+    })
     router("/");
   };
 
