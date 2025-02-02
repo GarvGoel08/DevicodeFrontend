@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar2'
 import Footer from '../components/Footer'
 import { useNavigate, useParams } from 'react-router-dom';
 import SchemaList from '../components/SchemaList';
+import {Sparkles as AIIcon} from 'lucide-react'
 
 export default function Schemas() {
   const router = useNavigate();
@@ -43,7 +44,15 @@ export default function Schemas() {
           </button>
         </div>
         <SchemaList projects={schemas} projectId={project_id} />
+        <div className='flex justify-center'>
+          <button
+          onClick={()=>router(`/dashboard/generateSchema/${project_id}`)}
+          className='mb-8 px-4 py-2 text-lg flex gap-2 self-center font-semibold bg-green-700 text-slate-100 rounded-lg transition-all ease-in duration-100 hover:bg-green-800'>
+          Generate Schema using AI <AIIcon className='text-lg text-slate-100'/>
+          </button>
+        </div>
       </div>
+      
       <Footer />
     </div>
   )

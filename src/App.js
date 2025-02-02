@@ -10,6 +10,7 @@ import AddMethods from "./pages/addMethods";
 import UpdateMethods from "./pages/UpdateMethods";
 import CreateAPI from "./pages/CreateAPI";
 import SchemaDocs from "./pages/SchemaDocs";
+import SchemaGeneratePage from "./pages/SchemaGeneratePage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/dashboard/addMethods/:project_id/:schema_id" element={<AddMethods/>}/>
           <Route path="/dashboard/updateMethods/:project_id/:schema_id" element={<UpdateMethods/>}/>
           <Route path="/dashboard/getDocs/:schema_id" element={<SchemaDocs/>}/>
+          <Route path="/dashboard/generateSchema/:project_id" element={<SchemaGeneratePage/>}/>
         </Routes>
       </Router>
     </>
