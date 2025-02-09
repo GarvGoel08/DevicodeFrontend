@@ -26,12 +26,19 @@ function SchemaGeneratePage() {
         ]
     });
     const [showForm,setShowForm] = useState(false);
+    const [selectedModel,setSelectedModel] = useState("llama3.2");
     const [schemaName,setSchemaName] = useState("");
     const [details,setDetails] = useState("")
     const [loading,setLoading] = useState(false);
     const handleGenerateSchema = () =>{
+        if(!schemaName){
+          alert("Schema Name is required field");
+          return;
+        }
+
         setLoading(true);
         const userInput = {
+            modelType: selectedModel,
             schemaName,
             details
         };
@@ -67,7 +74,25 @@ function SchemaGeneratePage() {
           <h1 className="text-3xl font-bold mb-6">Generate Schema</h1>
           {/* Schema Name Input */}
           <div className="mb-6">
+            {/* Choose Model Dropdown */}
             <label className="block text-lg font-semibold mb-2">
+              Choose Model
+            </label>
+            <select
+              className="w-full bg-auth-bg p-4 py-2 rounded-lg border border-text-light focus:outline-none focus:shadow-outline focus:border-theme-color-primary transition-all duration-300 ease-in-out"
+              value={selectedModel}
+              onChange={(e) => setSelectedModel(e.target.value)}
+            >
+              <option value="llama3.2">
+                Llama 3.2B - Quick results, standard precision
+              </option>
+              <option value="llama3.3">
+                Llama 3.3B - High accuracy, optimized for complexity
+              </option>
+            </select>
+
+            {/* Schema Name Input */}
+            <label className="block text-lg font-semibold mb-2 mt-4">
               Schema Name
             </label>
             <input
@@ -77,7 +102,9 @@ function SchemaGeneratePage() {
               value={schemaName}
               onChange={(e) => setSchemaName(e.target.value)}
             />
-            <label className="block text-lg font-semibold mb-2">
+
+            {/* Schema Details Input */}
+            <label className="block text-lg font-semibold mb-2 mt-4">
               Details
             </label>
             <input
@@ -88,6 +115,7 @@ function SchemaGeneratePage() {
               onChange={(e) => setDetails(e.target.value)}
             />
           </div>
+
           <button 
           onClick={()=>handleGenerateSchema()}
           className='bg-theme-color-secondary hover:bg-theme-color-primary transition-all duration-300 ease-in-out text-text-normal py-2 px-8 rounded-md'>

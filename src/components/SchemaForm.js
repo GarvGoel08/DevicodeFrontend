@@ -43,7 +43,6 @@ function SchemaForm({Schema,project_id}) {
       }
       setLoading(true);
 
-      console.log(jwtToken);
       const schemaData = {
         schema_name: Schema.schemaName,
         fields,
