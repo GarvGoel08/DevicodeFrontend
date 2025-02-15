@@ -34,6 +34,7 @@ export default function LoginForm({ email, password, handleInputChange, setPassw
           type="submit"
           className="bg-theme-color-secondary transition-all duration-300 ease-in-out hover:bg-theme-color-primary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
           onClick={(e) => handleLogin(e)}
+          disabled={isLoading}
         >
           Login
         </button>

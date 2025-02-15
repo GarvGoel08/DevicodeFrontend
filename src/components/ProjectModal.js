@@ -1,6 +1,7 @@
 import React from "react";
+import Spinner from "./Spinner";
 
-export default function ProjectModal({ showModal, setShowModal, handleCreateProject,projectName, setProjectName }) {
+export default function ProjectModal({ showModal, setShowModal, handleCreateProject,projectName, setProjectName, isLoading }) {
   return (
     <div
       className={`absolute ${
@@ -18,15 +19,21 @@ export default function ProjectModal({ showModal, setShowModal, handleCreateProj
         value={projectName}
         onChange={(e) => setProjectName(e.target.value)}
       />
-      <button onClick={handleCreateProject} className="bg-theme-color-secondary hover:bg-theme-color-primary transition-all duration-300 ease-in-out text-text-normal py-1 px-4 rounded-md w-full mt-4">
+      <button disabled={isLoading} onClick={handleCreateProject} className="bg-theme-color-secondary hover:bg-theme-color-primary transition-all duration-300 ease-in-out text-text-normal py-1 px-4 rounded-md w-full mt-4">
         Submit
       </button>
       <button
         onClick={() => setShowModal(false)}
+        disabled={isLoading}
         className="border-theme-color-primary border hover:bg-theme-color-primary transition-all duration-300 ease-in-out text-text-normal py-1 px-4 rounded-md w-full mt-1"
       >
         Cancel
       </button>
+      {isLoading && (
+        <div className="mt-2">
+          <Spinner />
+        </div>
+      )}
     </div>
   );
 }

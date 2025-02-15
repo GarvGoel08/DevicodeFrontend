@@ -8,7 +8,7 @@ export default function Projects() {
   const [projects, setProjects] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [projectName, setProjectName] = useState("");
-
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const generativeSchemaURL = process.env.REACT_APP_AIGENERATEDSCHEMA_URL;
@@ -43,6 +43,7 @@ export default function Projects() {
 
   const handleCreateProject = () => {
     const backendURL = process.env.REACT_APP_BACKEND_URL;
+    setIsLoading(true);
     fetch(`${backendURL}api/v1/createProject`, {
       method: "POST",
       credentials: "include",
@@ -61,12 +62,14 @@ export default function Projects() {
             .then((res) => res.json())
             .then((data) => {
               setProjects(data.projects);
+              setIsLoading(false);
             });
           // console.log(data)
           // setProjects((prevProjects) => [...prevProjects, data.project]);
           setShowModal(false);
         } else {
           alert(data.message);
+          setIsLoading(false);
         }
       })
       .catch((err) => console.log(err));
@@ -92,6 +95,7 @@ export default function Projects() {
           setShowModal={setShowModal}
           projectName={projectName}
           setProjectName={setProjectName}
+          isLoading={isLoading}
         />
       </div>
       <Footer />
