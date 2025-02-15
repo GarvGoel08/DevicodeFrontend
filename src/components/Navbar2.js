@@ -5,7 +5,7 @@ import { logout } from "../redux/userSlice";
 import DevicodeLogo from "../pages/Images/Devicode-Logo.png";
 
 const Navbar = () => {
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const isLoggedIn = useSelector((state) => (state.user && state.user.expiresIn > new Date().getTime()));
   const [showNavbar, setShowNavbar] = useState(false);
   const router = useNavigate();
   const isHome = window.location.pathname === "/";

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../redux/userSlice';
 
 export default function Signup() {
-  const { isLoggedIn } = useSelector((state) => state.user);
+  const { isLoggedIn } = useSelector((state) => (state.user && state.user.expiresIn > new Date().getTime()));
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,7 +38,7 @@ export default function Signup() {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          dispatch(login({ userInfo: data.data }));
+          dispatch(login({ userInfo: data.data, expiresIn: new Date().getTime() + 7*24*60*60*1000 }));
           window.location.href = "/Login";
         } else {
           alert(data.message);
