@@ -120,6 +120,13 @@ export default function UpdateMethods() {
       return;
     }
 
+    setMethodsList((prevList) =>
+      prevList.map((method) => ({
+        ...method,
+        route_name: method.route_name.replace("/", "").replace(/\b\w/g, (char) => char.toUpperCase()),
+      }))
+    );
+
     fetch(
       `${process.env.REACT_APP_BACKEND_URL}api/v1/updateSchema/${schema_id}`,
       {
