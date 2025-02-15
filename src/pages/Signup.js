@@ -12,6 +12,7 @@ export default function Signup() {
   const [user_name, setUserName] = useState("");
   const [company_name, setCompanyName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -27,6 +28,7 @@ export default function Signup() {
   const handleSignUp = (e) => {
     e.preventDefault();
     const backendURL = process.env.REACT_APP_BACKEND_URL;
+    setIsLoading(true);
     fetch(`${backendURL}api/v1/register`, {
       method: "POST",
       headers: {
@@ -39,19 +41,22 @@ export default function Signup() {
       .then((data) => {
         if (data.success) {
           dispatch(login({ userInfo: data.data, expiresIn: new Date().getTime() + 7*24*60*60*1000 }));
+          setIsLoading(false);
           window.location.href = "/Login";
         } else {
           alert(data.message);
+          setIsLoading(false);
         }
       })
       .catch((error) => {
         console.error("Error:", error);
+        setIsLoading(false);
       });
   };
   return (
     <div className="flex max-sm:flex-col h-screen bg-main-bg">
       <SignupViewer passMask={passMask} password={password} email={email} name={user_name} company_name={company_name}/>
-      <SignUpForm email={email} handleSignUp={handleSignUp} password={password} handleInputChange={handleInputChange} setPassword={setPassword}  user_name={user_name} setName={setUserName} company_name={company_name} setCompanyName={setCompanyName} confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword}/>
+      <SignUpForm email={email} isLoading={isLoading} handleSignUp={handleSignUp} password={password} handleInputChange={handleInputChange} setPassword={setPassword}  user_name={user_name} setName={setUserName} company_name={company_name} setCompanyName={setCompanyName} confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword}/>
     </div>
   );
 }

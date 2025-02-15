@@ -1,4 +1,5 @@
 import React from "react";
+import Spinner from "./Spinner";
 
 export default function SignUpForm({
   email,
@@ -9,13 +10,14 @@ export default function SignUpForm({
   setName,
   confirmPassword,
   setConfirmPassword,
-  company_name, 
+  company_name,
   setCompanyName,
-  handleSignUp
+  handleSignUp,
+  isLoading,
 }) {
   return (
     <div className="flex-1 bg-auth-bg flex text-text-normal flex-col justify-center items-center p-8">
-      <h2 className="text-2xl font-bold mb-6">Sign Up  to Devicode</h2>
+      <h2 className="text-2xl font-bold mb-6">Sign Up to Devicode</h2>
       <form className="w-full max-w-sm space-y-4">
         <div>
           <label className="block text-text-light text-sm font-bold mb-2">
@@ -84,12 +86,14 @@ export default function SignUpForm({
         >
           Signup
         </button>
+        {isLoading && (
+          <div className="mt-4 w-full flex items-center justify-center">
+            <Spinner />
+          </div>
+        )}
         <div className="text-center mt-4">
           <span className="text-text-light mr-2">Already have an account?</span>
-          <a
-            href="/login"
-            className="text-theme-color-primary hover:underline"
-          >
+          <a href="/login" className="text-theme-color-primary hover:underline">
             Login
           </a>
         </div>

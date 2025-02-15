@@ -1,6 +1,7 @@
 import React from "react";
+import Spinner from "./Spinner";
 
-export default function LoginForm({ email, password, handleInputChange, setPassword, handleLogin }) {
+export default function LoginForm({ email, password, handleInputChange, setPassword, handleLogin, isLoading }) {
   return (
     <div className="flex-1 bg-auth-bg flex text-text-normal flex-col justify-center items-center p-8">
       <h2 className="text-2xl font-bold mb-6">Login to Devicode</h2>
@@ -36,6 +37,11 @@ export default function LoginForm({ email, password, handleInputChange, setPassw
         >
           Login
         </button>
+        {isLoading && (
+          <div className="mt-4 w-full flex items-center justify-center">
+            <Spinner />
+          </div>
+        )}
         <div className="text-center mt-4">
           <span className="text-text-light mr-2">Don't have an account?</span>
           <a href="/signup" className="text-theme-color-primary hover:underline">
