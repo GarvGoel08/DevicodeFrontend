@@ -23,5 +23,7 @@ Say goodbye to backend complexities! Devicode empowers developers and non-develo
 🔗 **Linkedin(To Contact Me):** [Garv Goel](https://www.linkedin.com/in/garvgoel2908/)  
 🔗 **My Portfolio:** [Garv Goel](https://garv-goel.vercel.app/)  
 
-This was a complex project, and if you find any bugs, feel free to open an issue—I’ll fix them ASAP! 🚀
+**Contributors:** [Garv Goel](https://github.com/GarvGoel08), [Farhan Nizam](https://github.com/farhan0304)
+
+This was a complex project, and if you find any bugs, feel free to open an issue—We’ll fix them ASAP! 🚀
 
