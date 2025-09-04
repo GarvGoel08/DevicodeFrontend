@@ -43,7 +43,7 @@ function SchemaGeneratePage() {
             details
         };
 
-        fetch(`${process.env.REACT_APP_AIGENERATEDSCHEMA_URL}api/v1/schema`, {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}api/v1/generate-schema`, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -54,7 +54,7 @@ function SchemaGeneratePage() {
           .then(res=>res.json())
           .then(dat=>{
             console.log(dat);
-            const {Schema} = dat.data;
+            const Schema = dat.data;
             setShowForm(true);
             setSch(Schema);
             setLoading(false)
